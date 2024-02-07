@@ -5,6 +5,7 @@ import terser from '@rollup/plugin-terser';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import copy from 'rollup-plugin-copy';
+import multi from '@rollup/plugin-multi-entry';
 import { packageConf } from './src/lib/buildConfig.js';
 
 const production = !process.env.ROLLUP_WATCH;
@@ -31,7 +32,7 @@ function serve() {
 }
 
 export default {
-	input: 'src/main.js',
+	input: './src/components/public/*.svelte',
 	output: {
 		sourcemap: false,
 		format: 'iife',
@@ -40,6 +41,7 @@ export default {
 	},
 	plugins: [
 		commonjs(),
+		multi(),
 
 		copy({
 			targets: [

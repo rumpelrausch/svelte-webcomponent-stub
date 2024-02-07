@@ -4,7 +4,7 @@
 
 https://svelte.dev/
 
-## Scuffolding
+### Scaffolding
 
 - package.json<br>
   The package name is used as the central naming part throughout
@@ -17,11 +17,6 @@ https://svelte.dev/
     - picnic.min.css - The CSS framework
     - `${packageName}`.js - Web component bundle
 - src/
-  - main.js<br>
-    Used by the rollup builder as a starting point.
-    All svelte components that are _not_ referenced must be listed
-    here. Rollup will hand them over to the svelte compiler which
-    will then resolve all contained dependencies.
   - lib/<br>
     Contains modules needed during build or runtime.
     - runTimeConfig.js<br>
@@ -29,13 +24,15 @@ https://svelte.dev/
       Is recreated with each build.
   - components/<br>
     - private/<br>
-      Svelte components that aren't web components.
+      Svelte components that **aren't published** as web components.
       - styleImport.svelte<br>
         Implements browser loading of picnic.css per component.
         Must be appended to any web component that needs the picnic
         CSS.
     - public/<br>
-      Published Svelte web components.
+      **Published** Svelte web components.<br>
+      All `*.svelte` files in this directory will be loaded as build
+      starting points.
 
 ## Development
 
